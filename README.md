@@ -1,10 +1,10 @@
 ﻿# Experimental_LDPC-Staircase
 
-This is an experimental implementation of LDPC Staircase and Triangle. 
+This is an experimental implementation of LDPC Staircase and Triangle.  
 It only supports core feature (encoder and decoder) of RFC 5170.
 
-The implementation consists of files in `staircase` directory. 
-It's possible to setup encoder/decoder, some symbols, and test recovery. 
+The implementation consists of files in `staircase` directory.  
+It's possible to setup encoder/decoder, some symbols, and test recovery.  
 For the usage, refer `staircase.h`. 
 I put a sample `main.c` to use the Recovery Codes.
 
