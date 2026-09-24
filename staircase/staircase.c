@@ -158,7 +158,7 @@ int ldpc_encoder_add(
 				}
 #endif
 
-				align_xor(buf_p, buf_p - align_size, align_size);	// staircase
+				align_xor(buf_p, buf_p - align_size, align_size);	// accumulator
 			}
 
 			row_start += row_degree;

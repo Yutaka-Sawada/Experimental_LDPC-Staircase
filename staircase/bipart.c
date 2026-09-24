@@ -38,7 +38,7 @@ int create_bipartite(ldpc_coder *ldpc)
 	//print_matrix_row(ldpc);
 
 	// allocate memory for bipartite graph
-	size_t alloc_size = entry_max + num_rep * 3 + num_rep - 1;
+	size_t alloc_size = entry_max + num_rep * 2 + num_rep * 2 - 1;
 #ifdef TRIANGLE_SCHEME	// LDPC-Triangle has additional 1s.
 	printf("LDPC Triangle scheme may require %u more entries.\n", num_rep * (num_rep - 1) / 4);
 	alloc_size += num_rep * (num_rep - 1) / 4;	// half of triangle
@@ -95,11 +95,11 @@ int create_bipartite(ldpc_coder *ldpc)
 			}
 #endif
 
-			node_list[node_start + 2 + node_len] = num_src + node_id - 1;	// staircase
+			node_list[node_start + 2 + node_len] = num_src + node_id - 1;	// dual diagonal
 			node_len++;
 		}
 		// set this repair symbol
-		node_list[node_start + 2 + node_len] = num_src + node_id;
+		node_list[node_start + 2 + node_len] = num_src + node_id;	// diagonal
 		node_len++;
 		//printf("node %u, start = %u, len = %u\n", node_id, node_start, node_len);
 		node_list[node_start] = node_id;
@@ -110,7 +110,7 @@ int create_bipartite(ldpc_coder *ldpc)
 	}
 	ldpc->num_bg = node_start;
 
-	//printf("average degree = %g\n", (double)(entry_max + num_rep - 1) / num_rep);
+	//printf("average degree = %g\n", (double)(entry_max + num_rep * 2 - 1) / num_rep);
 	//print_bg(ldpc);
 
 	free_matrix(ldpc);	// no need matrix anymore
