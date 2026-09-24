@@ -210,7 +210,7 @@ ldpc_coder *ldpc_decoder_new(
 	unsigned int symbol_size)	// size of each source symbol in bytes
 {
 	// Becasue row weight >= 2, source symbols >= 3.
-	if ((num_source < 3) || (symbol_size < 1))
+	if ((num_source < 3) || (num_repair < 1) || (symbol_size < 1))
 		return NULL;
 
 	ldpc_coder *ldpc = calloc(1, sizeof(ldpc_coder));

@@ -22,10 +22,13 @@ static void matrix_insert_entry(ldpc_coder *ldpc, unsigned int row_id, unsigned 
 	unsigned int *entry = ldpc->mat;
 	unsigned int pos = ldpc->num_mat;
 
+/*
+	// No need this check ?
 	if (pos >= ldpc->max_mat){
 		printf("Error: too many entories in matrix\n");
 		return;
 	}
+*/
 
 	entry += pos * 2;
 	entry[0] = column_id;
