@@ -269,9 +269,9 @@ unsigned int solve_bg_ge(ldpc_coder *ldpc)
 
 	num_lost = 0;	// count number of resolved rows
 	while (pivot_degree < 0xffffffff){
-		col_id = bitmask_ntz(matrix + int_col * pivot_id, int_col);
-		//printf("pivot_id = %u, pivot_degree = %u, col_id = %u\n", pivot_id, pivot_degree, col_id);
 		pivot_p = matrix + int_col * pivot_id;
+		col_id = bitmask_ntz(pivot_p, int_col);
+		//printf("pivot_id = %u, pivot_degree = %u, col_id = %u\n", pivot_id, pivot_degree, col_id);
 		order_list[pivot_id] = col_id;	// save order of rows
 		degree_list[pivot_id] = 0xffffffff;	// no need degree of pivot row
 
