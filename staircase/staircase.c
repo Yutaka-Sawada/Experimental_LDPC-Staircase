@@ -182,9 +182,9 @@ int ldpc_encoder_create(
 	if (ldpc->loaded < num_src)
 		return LDPC_ENC_LACK;	// need to add source symbols at first
 	if (off_id + num_sym > num_src + ldpc->num_rep)
-		return LDPC_ADD_PARA;	// given symbol ID or range is invalid.
+		return LDPC_ENC_PARA;	// given symbol ID or range is invalid.
 	if (ldpc->max_bg != 0)
-		return LDPC_ADD_DIF;	// decoder is different.
+		return LDPC_ENC_DIF;	// decoder is different.
 
 	unsigned int esi;	// Encoding Symbol ID
 	unsigned int symbol_size = ldpc->sym_size;
@@ -318,7 +318,7 @@ int ldpc_decoder_solve_iterative(ldpc_coder *ldpc)
 	if (ldpc->loaded < num_src)
 		return LDPC_ENC_LACK;	// need more symbols
 	if (ldpc->max_bg == 0)
-		return LDPC_ADD_DIF;	// encoder is different.
+		return LDPC_ENC_DIF;	// encoder is different.
 
 	unsigned int prev = ldpc->recover;
 	do {	// Iterative Decoding with Peeling Algorithm
@@ -349,7 +349,7 @@ int ldpc_decoder_solve_hybrid(
 	if (ldpc->loaded < num_src)
 		return LDPC_ENC_LACK;	// need more symbols
 	if (ldpc->max_bg == 0)
-		return LDPC_ADD_DIF;	// encoder is different.
+		return LDPC_ENC_DIF;	// encoder is different.
 
 	unsigned int prev = ldpc->recover;
 	do {	// Iterative Decoding with Peeling Algorithm at first
@@ -388,9 +388,9 @@ int ldpc_decoder_recover(
 	if (ldpc->loaded < num_src)
 		return LDPC_ENC_LACK;	// need to add source symbols at first
 	if ((off_id >= num_src) || (off_id + num_sym > num_src))
-		return LDPC_ADD_PARA;	// given symbols ID or range is invalid.
+		return LDPC_ENC_PARA;	// given symbols ID or range is invalid.
 	if (ldpc->max_bg == 0)
-		return LDPC_ADD_DIF;	// encoder is different.
+		return LDPC_ENC_DIF;	// encoder is different.
 
 	unsigned int esi;	// Encoding Symbol ID
 	unsigned int symbol_size = ldpc->sym_size;
