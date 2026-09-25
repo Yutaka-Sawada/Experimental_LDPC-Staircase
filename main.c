@@ -59,7 +59,7 @@ int main(int argc, char* argv[]){
 	int i, j, min, max, rv;
 	int source_count = 1000, parity_count = 500;
 	int lost_count = 0, parity_lost = 0;
-	int input_count, ignore_count, require_count, id;
+	int input_count, ignore_count, id;
 	int valid_count, ok_count;
 	int *order_buf;
 	unsigned int *int_p;
@@ -390,8 +390,8 @@ printf("\n");
 	}
 
 	// It may require 2% overhead at least 2.
-	require_count = source_count + ldpc_decoder_overhead(ldpc);
-	printf("It may require %u valid data to recover lost data.\n", require_count);
+	ok_count = source_count + ldpc_decoder_overhead(ldpc);
+	printf("It may require %u valid data to recover lost data.\n", ok_count);
 
 	// input available source data at first
 	ok_count = 0;
